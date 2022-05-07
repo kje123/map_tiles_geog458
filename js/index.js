@@ -3,7 +3,7 @@ mapboxgl.accessToken =
 let map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/light-v10',
-    zoom: 9, // starting zoom
+    zoom: 8, // starting zoom
     center: [-121.81193014002105, 47.53498148210733], // starting center
 });
 
@@ -14,7 +14,7 @@ map.on('load', () => {
             '../tiles/basemap/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
-        'attribution': 'Tiles by ESRI</a>'
+        'attribution': 'Base by CartoDB, customized by Keith Ellingwood</a>'
     });
 
     map.addSource('salmon-tiles', {
@@ -23,7 +23,7 @@ map.on('load', () => {
             '../tiles/salmon/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
-        'attribution': 'Tiles by ESRI</a>'
+        'attribution': 'Data from King County, visualization by Keith Ellingwood</a>'
     });
 
     map.addSource('basemap-salmon-tiles', {
@@ -32,7 +32,16 @@ map.on('load', () => {
             '../tiles/basemap_with_salmon/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
-        'attribution': 'Tiles by ESRI</a>'
+        'attribution': 'Base by CartoDB, Data from King County, visualization by Keith Ellingwood</a>'
+    });
+
+    map.addSource('bisexual-tiles', {
+        'type': 'raster',
+        'tiles': [
+            '../tiles/bisexual/{z}/{x}/{y}.png'
+        ],
+        'tileSize': 256,
+        'attribution': 'Base by Mapbox, customized by Keith Ellingwood</a>'
     });
 
     map.addLayer({
@@ -61,16 +70,24 @@ map.on('load', () => {
         },
         'source': 'basemap-salmon-tiles'
     });
+
+    map.addLayer({
+        'id': 'bisexual',
+        'type': 'raster',
+        'layout': {
+            'visibility': 'none'
+        },
+        'source': 'bisexual-tiles'
+    });
 });
 
 map.on('idle', () => {
-    // If these two layers were not added to the map, abort
-    if (!map.getLayer('basemap') || !map.getLayer('salmon')) {
+    if (!map.getLayer('basemap') || !map.getLayer('salmon') || !map.getLayer('basemap-with-salmon') || !map.getLayer('bisexual')) {
         return;
     }
 
     // Enumerate ids of the layers.
-    const toggleableLayerIds = ['basemap', 'salmon', 'basemap-with-salmon'];
+    const toggleableLayerIds = ['basemap', 'salmon', 'basemap-with-salmon', 'bisexual'];
 
     // Set up the corresponding toggle button for each layer.
     for (const id of toggleableLayerIds) {
