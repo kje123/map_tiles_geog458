@@ -11,7 +11,7 @@ map.on('load', () => {
     map.addSource('basemap-tiles', {
         'type': 'raster',
         'tiles': [
-            '../tiles/basemap/{z}/{x}/{y}.png'
+            './tiles/basemap/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
         'attribution': 'Base by CartoDB, customized by Keith Ellingwood</a>'
@@ -20,7 +20,7 @@ map.on('load', () => {
     map.addSource('salmon-tiles', {
         'type': 'raster',
         'tiles': [
-            '../tiles/salmon/{z}/{x}/{y}.png'
+            './tiles/salmon/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
         'attribution': 'Data from King County, visualization by Keith Ellingwood</a>'
@@ -29,7 +29,7 @@ map.on('load', () => {
     map.addSource('basemap-salmon-tiles', {
         'type': 'raster',
         'tiles': [
-            '../tiles/basemap_with_salmon/{z}/{x}/{y}.png'
+            './tiles/basemap_with_salmon/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
         'attribution': 'Base by CartoDB, Data from King County, visualization by Keith Ellingwood</a>'
@@ -38,7 +38,7 @@ map.on('load', () => {
     map.addSource('bisexual-tiles', {
         'type': 'raster',
         'tiles': [
-            '../tiles/bisexual/{z}/{x}/{y}.png'
+            './tiles/bisexual/{z}/{x}/{y}.png'
         ],
         'tileSize': 256,
         'attribution': 'Base by Mapbox, customized by Keith Ellingwood</a>'

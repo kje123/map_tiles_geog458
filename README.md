@@ -2,6 +2,7 @@
 
 ## URL To Map:
 
+https://kje123.github.io/map_tiles_geog458/
 
 ## Description and layers
 
